@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* ── Core Colors ── */
+    --background: 40 20% 98%;
+    --foreground: 20 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 10% 10%;
+    --primary: 25 45% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 140 28% 15%;
+    --secondary-foreground: 25 45% 90%;
+    --muted: 40 10% 90%;
+    --muted-foreground: 20 5% 40%;
+    --accent: 25 45% 35%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 40 10% 82%;
+    --input: 40 10% 95%;
+    --ring: 25 45% 35%;
+    --radius: 0.25rem;
+
+    /* ── Brand Colors ── */
+    --color-whatsapp: #25D366;
+    --color-surface-warm-1: #eee9df;
+    --color-surface-warm-2: #f8f6f1;
+    --color-surface-warm-3: #f0ece3;
+    --color-surface-warm-4: #e8e2d6;
+
+    /* ── Fluid Typography (clamp: mobile → desktop) ── */
+    --font-h1:      clamp(1.5rem, 1rem + 3vw, 4.5rem);       /* 24px → 72px */
+    --font-h2:      clamp(1.25rem, 0.8rem + 2.5vw, 3rem);    /* 20px → 48px */
+    --font-h3:      clamp(1.125rem, 0.9rem + 1.5vw, 2rem);   /* 18px → 32px */
+    --font-display: clamp(1.75rem, 1rem + 4vw, 5rem);         /* 28px → 80px */
+
+    /* ── Sidebar ── */
+    --sidebar-background: 40 20% 98%;
+    --sidebar-foreground: 20 10% 10%;
+    --sidebar-primary: 25 45% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 140 28% 15%;
+    --sidebar-accent-foreground: 25 45% 90%;
+    --sidebar-border: 40 10% 82%;
+    --sidebar-ring: 25 45% 35%;
+  }
+
+  .dark {
+    --background: 20 8% 14%;
+    --foreground: 30 14% 97%;
+
+    --card: 20 10% 18%;
+    --card-foreground: 30 14% 97%;
+
+    --popover: 20 10% 18%;
+    --popover-foreground: 30 14% 97%;
+
+    --primary: 20 14% 44%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 70 8% 62%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 20 8% 30%;
+    --muted-foreground: 30 10% 70%;
+
+    --accent: 70 12% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 10% 25%;
+    --input: 20 10% 22%;
+    --ring: 20 14% 44%;
+    --sidebar-background: 20 8% 14%;
+    --sidebar-foreground: 30 14% 97%;
+    --sidebar-primary: 20 14% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 70 12% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 20 10% 25%;
+    --sidebar-ring: 20 14% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
+
+/* Scrollbar-hide utility for horizontal carousels */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+  color: hsl(var(--destructive)) !important;
+}
+
+/* Disable animations for users with motion sensitivity */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
